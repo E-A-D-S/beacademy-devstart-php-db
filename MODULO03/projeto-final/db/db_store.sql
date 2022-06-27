@@ -12,11 +12,23 @@ CREATE TABLE tb_category (
 
 
 
-INSERT INTO tb_product ( name, description, valor, quantity, created_at, categoria_id, photo)
+INSERT INTO tb_product ( name, description, value, quantity, created_at, category_id, photo)
 
 VALUES 
-('red label', 'garrafa de whisky', '99.99', '15', '1900-01-01 00:00:00','01',
-'encurtador.com.br/fDRVX');
+('Baly melancia', 'Energético 1 litro', '8.90', '10', '2022-06-12 00:00:00','02',
+'https://www.imigrantesbebidas.com.br/bebida/images/products/full/88742-energetico-baly-melancia-2l.1623941506.jpg'),
+
+('Baly cranberry', 'Energético 1 litro', '8.90', '10', '2022-06-12 00:00:00','02',
+'https://www.imigrantesbebidas.com.br/bebida/images/products/full/88973-energetico-baly-cranberry-lata-2-litros.1634669631.jpg'),
+
+('Baly maçã', 'Energético 1 litro', '8.90', '10', '2022-06-12 00:00:00','02',
+'https://www.imigrantesbebidas.com.br/bebida/images/products/full/88743-energetico-baly-maca-verde-2l.1623943008.jpg'),
+
+('Baly coco e açai', 'Energético 1 litro', '8.90', '10', '2022-06-12 00:00:00','02',
+'https://www.imigrantesbebidas.com.br/bebida/images/products/full/88741-energetico-baly-coco-e-acai-2l.1623941951.jpg'),
+
+('Baly Pitaya', 'Energético 1 litro', '8.90', '10', '2022-06-12 00:00:00','02',
+'https://www.imigrantesbebidas.com.br/bebida/images/products/full/89219-energetico-baly-pitaya-dragon-2l.1646937276.jpg');
 
 SELECT tb_product
 FROM category
@@ -26,8 +38,8 @@ CREATE TABLE tb_product (
     name VARCHAR(30) NOT NULL,
     description VARCHAR(100) NOT NULL,
     photo VARCHAR(255) NOT NULL,
-    valor FLOAT(5,2) NOT NULL,
-    categoria_id INT (11) NOT NULL,
+    value FLOAT(5,2) NOT NULL,
+    category_id INT (11) NOT NULL,
     quantity INT(5) NOT NULL,
     created_at DATETIME NOT NULL
 );
@@ -77,3 +89,16 @@ https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.imigrantesbebidas.com.br%
 baly lata tropical
 https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.imigrantesbebidas.com.br%2Fbebida%2Fimages%2Fproducts%2Ffull%2F88734-energetico-baly-tropical-lata-250ml.jpg&imgrefurl=https%3A%2F%2Fwww.imigrantesbebidas.com.br%2Fenergetico-baly-tropical-lata-250ml&tbnid=l6Z1kruNX48HNM&vet=12ahUKEwjjkOfCn8X4AhWCrpUCHV3wBlMQMygGegUIARDPAQ..i&docid=3-hh8auXWhtOlM&w=1186&h=2180&q=baly%20lata&ved=2ahUKEwjjkOfCn8X4AhWCrpUCHV3wBlMQMygGegUIARDPAQ
 
+    <label for="category">Categoria</label>
+    <select name="category" id="category" class="form-select mb-3">
+        <option selected> -- Selecione --</option>
+
+        <?php 
+            while ($category = $data->fetch(\PDO::FETCH_ASSOC)) {
+                extract($category);
+
+                echo "<option value='{$id}'>{$name}</option>";
+
+            }
+?>
+    </select>
